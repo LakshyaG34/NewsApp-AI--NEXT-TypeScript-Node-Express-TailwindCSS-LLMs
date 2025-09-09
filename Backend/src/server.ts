@@ -1,0 +1,39 @@
+import express, {Request, Response} from "express"
+import dotenv from "dotenv"
+import cors from "cors";
+import news from "../news.json";
+
+dotenv.config();
+
+const app = express();
+const PORT = process.env.PORT || 4000;
+
+
+app.use(express.json());
+app.use(cors());
+
+// app.get("/api/news", async(req, res) =>{
+//     try{
+//         const response = await fetch(`https://newsapi.org/v2/everything?q=tesla&from=2025-08-08&sortBy=publishedAt&apiKey=${process.env.NEWS_API}`);
+//         const data = await response.json();
+//         res.json({articles : data.articles});
+//     }catch(err)
+//     {
+//         console.log(err);
+//     }
+// })
+
+app.get("/api/news", (req : Request, res : Response) : void=>{
+    try{
+        // res.json(news)
+        res.status(200).json(news);
+    }catch(err)
+    {
+        console.log(err);
+        res.status(500).json({articles:[]});
+    }
+})
+
+app.listen(PORT, ()=>{
+    console.log(`Server is running on ${PORT}`)
+})
