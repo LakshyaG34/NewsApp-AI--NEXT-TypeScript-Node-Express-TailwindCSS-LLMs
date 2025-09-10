@@ -4,8 +4,8 @@
   "main": "dist/server.js",
   "scripts": {
     "dev": "nodemon --exec ts-node src/server.ts",
-    "build": "tsc",
-    "start": "node server.js"
+    "build": "cd ../Frontend && npm install && npm run build && cd ../Backend && tsc",
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
