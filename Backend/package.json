@@ -4,7 +4,7 @@
   "main": "dist/server.js",
   "scripts": {
     "dev": "nodemon --exec ts-node src/server.ts",
-    "build": "cd ../Frontend && npm install && npm run build && cd ../Backend && tsc",
+    "build": "npm install && cd ../Frontend && npm install && npm run build && cd ../Backend && tsc",
     "start": "node dist/server.js",
     "test": "echo \"No tests configured\" && exit 0"
   },
