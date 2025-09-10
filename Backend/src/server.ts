@@ -1,7 +1,8 @@
 import express, {Request, Response} from "express"
 import dotenv from "dotenv"
-import cors from "cors";
+// import cors from "cors";
 import news from "../news.json";
+import path from "path"
 
 dotenv.config();
 
@@ -10,7 +11,8 @@ const PORT = process.env.PORT || 4000;
 
 
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
+app.use(express.static(path.join(__dirname, "../../Frontend/out")))
 
 // app.get("/api/news", async(req, res) =>{
 //     try{
@@ -32,6 +34,10 @@ app.get("/api/news", (req : Request, res : Response) : void=>{
         console.log(err);
         res.status(500).json({articles:[]});
     }
+})
+
+app.get("*", (req : Request, res : Response)=>{
+    res.sendFile(path.join(__dirname, "../../Frontend/out/index.html"))
 })
 
 app.listen(PORT, ()=>{
