@@ -14,27 +14,28 @@ app.use(express.json());
 // app.use(cors());
 app.use(express.static(path.join(__dirname, "../../Frontend/out")))
 
-// app.get("/api/news", async(req, res) =>{
-//     try{
-//         const response = await fetch(`https://newsapi.org/v2/everything?q=tesla&from=2025-08-08&sortBy=publishedAt&apiKey=${process.env.NEWS_API}`);
-//         const data = await response.json();
-//         res.json({articles : data.articles});
-//     }catch(err)
-//     {
-//         console.log(err);
-//     }
-// })
-
-app.get("/api/news", (req : Request, res : Response) : void=>{
+app.get("/api/news", async(req, res) =>{
     try{
-        // res.json(news)
-        res.status(200).json(news);
+        const {country, category} = req.query;
+        const response = await fetch(`https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${process.env.NEWS_API}`);
+        const data = await response.json();
+        res.json({articles : data.articles});
     }catch(err)
     {
         console.log(err);
-        res.status(500).json({articles:[]});
     }
 })
+
+// app.get("/api/news", (req : Request, res : Response) : void=>{
+//     try{
+//         // res.json(news)
+//         res.status(200).json(news);
+//     }catch(err)
+//     {
+//         console.log(err);
+//         res.status(500).json({articles:[]});
+//     }
+// })
 
 app.get("*", (req : Request, res : Response)=>{
     res.sendFile(path.join(__dirname, "../../Frontend/out/index.html"))
