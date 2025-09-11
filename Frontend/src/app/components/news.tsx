@@ -55,6 +55,7 @@ const News = () =>{
                     <option value = "technology">Tech</option>
                     <option value = "sports">Sports</option>
                 </select>
+            </div>
                 <div className="grid sm:grid-cols-3 grid-cols-1 gap-6">
                     {loading ? (<p>Fetching News</p>) : news && news.length > 0 ? (
                         news.slice(0,6).map((item, idx: number) => (
@@ -68,7 +69,6 @@ const News = () =>{
                         ))
                     ) : <p>No news Found</p>}
                 </div>
-            </div>
         </div>
     )
 }
