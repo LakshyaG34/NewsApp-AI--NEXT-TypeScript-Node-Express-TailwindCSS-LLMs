@@ -8,7 +8,12 @@ interface NewsItem{
     title : string;
     description : string;
     urlToImage : string;
+    source : {
+        id : string | null;
+        name : string;
+    };
 }
+
 
 const News = () =>{
     
@@ -54,6 +59,11 @@ const News = () =>{
                 <select value={category} onChange = {(e)=>setCategory(e.target.value)}>
                     <option value = "technology">Tech</option>
                     <option value = "sports">Sports</option>
+                    <option value = "entertainment">entertainment</option>
+                    <option value = "general">general</option>
+                    <option value = "business">business</option>
+                    <option value = "science">science</option>
+                    <option value = "health">health</option>
                 </select>
             </div>
                 <div className="grid sm:grid-cols-3 grid-cols-1 gap-6">
@@ -65,6 +75,7 @@ const News = () =>{
                             title={item.title}
                             description={item.description}
                             image={item.urlToImage}
+                            publisher = {item.source.name}
                         />
                         ))
                     ) : <p>No news Found</p>}
