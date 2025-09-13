@@ -21,7 +21,7 @@ const News = () =>{
         const handleNews = async() : Promise<void> =>{
             try{
                 setLoading(true);
-                const response = await fetch(`/api/news?country=${country}&category=${category}`);
+                const response = await fetch(`http://localhost:5000/api/news?country=${country}&category=${category}`);
                 if(!response.ok)
                 {
                     throw new Error("Reponse is not OK");

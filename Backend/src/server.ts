@@ -1,8 +1,11 @@
 import express, {Request, Response} from "express"
 import dotenv from "dotenv"
-// import cors from "cors";
-import news from "../news.json";
-import path from "path"
+import cors from "cors";
+import { dbConnection } from "./db";
+import authRoutes from "./router/auth.router"
+import cookieParser from "cookie-parser"
+// import news from "../news.json";
+// import path from "path"
 
 dotenv.config();
 
@@ -11,10 +14,15 @@ const PORT = process.env.PORT || 4000;
 
 
 app.use(express.json());
-// app.use(cors());
-app.use(express.static(path.join(__dirname, "../../Frontend/out")))
+app.use(cors({
+    origin : "http://localhost:3000",
+    credentials : true
+}));
+app.use(cookieParser());
+app.use("/api/auth", authRoutes);
+// app.use(express.static(path.join(__dirname, "../../Frontend/out")))
 
-app.get("/api/news", async(req, res) =>{
+app.get("/api/news", async(req : Request, res : Response) : Promise<void> =>{
     try{
         const {country, category} = req.query;
         const response = await fetch(`https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${process.env.NEWS_API}`);
@@ -37,10 +45,11 @@ app.get("/api/news", async(req, res) =>{
 //     }
 // })
 
-app.get("*", (req : Request, res : Response)=>{
-    res.sendFile(path.join(__dirname, "../../Frontend/out/index.html"))
-})
+// app.get("*", (req : Request, res : Response)=>{
+//     res.sendFile(path.join(__dirname, "../../Frontend/out/index.html"))
+// })
 
 app.listen(PORT, ()=>{
+    dbConnection();
     console.log(`Server is running on ${PORT}`)
 })
