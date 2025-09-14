@@ -25,7 +25,7 @@ const Navbar = () =>{
 }
     return(
         <div className="flex flex-row justify-between bg-black/60 px-4 py-6">
-            <span className="text-xl font-bold">Nvb</span>
+            <span className="text-xl font-bold animate-neonTextGlow">Nvb</span>
             <div className="flex flex-row gap-2">
                 {!authUser ?
 

@@ -35,8 +35,39 @@
     }
   }
 
+  @keyframes neonTextGlow {
+  0%, 100% {
+    text-shadow: 
+      0 0 5px #00f,        /* Neon Blue */
+      0 0 10px #00f, 
+      0 0 20px #0ff;       /* Electric Cyan */
+  }
+  25% {
+    text-shadow: 
+      0 0 5px #ff00ff,     /* Neon Pink */
+      0 0 10px #ff00ff, 
+      0 0 20px #ff1eff;    /* Purple Glow */
+  }
+  50% {
+    text-shadow: 
+      0 0 5px #8000ff,     /* Deep Electric Purple */
+      0 0 15px #bf00ff, 
+      0 0 30px #ff00ff;    /* Neon Pink highlight */
+  }
+  75% {
+    text-shadow: 
+      0 0 5px #00e1ff,     /* Bright Neon Blue */
+      0 0 15px #009dff, 
+      0 0 30px #ff00e5;    /* Magenta Purple */
+  }
+}
+
+
   .animate-fireGlow {
     animation: fireGlow 2s infinite ease-in-out;
+  }
+  .animate-neonTextGlow {
+    animation: neonTextGlow 2s infinite ease-in-out;
   }
 }
 
