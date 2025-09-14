@@ -19,6 +19,28 @@
   }
 }
 
+@layer utilities {
+  @keyframes fireGlow {
+    0%, 100% {
+      box-shadow: 0 0 10px #ff6b6b, 0 0 20px #ff6b6b, 0 0 40px #ff3d3d;
+    }
+    25% {
+      box-shadow: 0 0 15px #ff9f43, 0 0 30px #ff6b6b, 0 0 50px #ff4d4d;
+    }
+    50% {
+      box-shadow: 0 0 20px #ff3d3d, 0 0 40px #ff1e1e, 0 0 60px #ff0000;
+    }
+    75% {
+      box-shadow: 0 0 18px #ff8c42, 0 0 35px #ff5e57, 0 0 55px #ff3838;
+    }
+  }
+
+  .animate-fireGlow {
+    animation: fireGlow 2s infinite ease-in-out;
+  }
+}
+
+
 body {
   background: var(--background);
   color: var(--foreground);

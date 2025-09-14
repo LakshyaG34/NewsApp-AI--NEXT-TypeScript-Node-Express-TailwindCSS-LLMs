@@ -1,4 +1,4 @@
-import express, {Request, Response} from "express"
+import {Request, Response} from "express"
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import dotenv from "dotenv"
 dotenv.config();
@@ -11,7 +11,7 @@ export const googleGen = async(req : Request, res : Response) =>{
     const {text, targetLen} = req.body;
     try{
         const model = genAI.getGenerativeModel({model : "gemini-1.5-flash"});
-        const prompt = `Translate the ${text} in ${targetLen}`;
+        const prompt = `Translate the ${text} in ${targetLen}, give only the direct translation, nothing more`;
         const result = await model.generateContent(prompt);
         res.json({translated : result.response.text()});
     }catch(err)

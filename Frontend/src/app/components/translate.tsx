@@ -1,5 +1,6 @@
 "use client"
 import React, {useState} from "react";
+import { LuSparkles } from "react-icons/lu";
 
 interface propTypes{
     description : string;
@@ -33,8 +34,13 @@ const TranslateAI: React.FC<propTypes> = ({description}) =>{
     return(
         <div>
             <form onSubmit = {handleFetch}>
-                <input value = {translatedLang} placeholder="Enter language" onChange={(e)=>setTranslatedLang(e.target.value)}/>
-                <button type = "submit" className="cursor-pointer">Translate</button>
+                <div className="flex flex-row gap-1">
+                    <input value = {translatedLang} placeholder="Enter language" onChange={(e)=>setTranslatedLang(e.target.value)}/>
+                    <button type = "submit" className="flex flex-row items-center cursor-pointer gap-2 border-2 rounded-xl px-1 hover:bg-white hover:text-black animate-fireGlow">
+                        Translate
+                        <LuSparkles className=""/>
+                    </button>
+                </div>
             </form>
             {
                 translatedTxt && <p>Translated : {translatedTxt}</p>
