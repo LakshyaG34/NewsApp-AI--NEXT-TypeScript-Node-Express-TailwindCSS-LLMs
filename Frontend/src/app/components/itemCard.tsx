@@ -1,11 +1,12 @@
 import React from "react";
+import TranslateAI from "./translate";
 
 interface propTypes {
   author: string;
   title: string;
   description: string;
   image: string;
-  publisher : string;
+  publisher: string;
 }
 
 const ItemCard: React.FC<propTypes> = ({
@@ -13,7 +14,7 @@ const ItemCard: React.FC<propTypes> = ({
   author,
   title,
   description,
-  publisher
+  publisher,
 }) => {
   return (
     <div className="border border-white/20 rounded-2xl shadow-md bg-white/5 backdrop-blur-md transition-transform hover:scale-105 hover:shadow-xl max-w-sm">
@@ -36,8 +37,11 @@ const ItemCard: React.FC<propTypes> = ({
         </span>
         <p className="text-sm text-gray-300 line-clamp-3">{description}</p>
         {author && (
-          <p className="absolute bottom-2 left-2 text-xs text-gray-400 italic mt-2">By {author}</p>
+          <p className="absolute bottom-2 left-2 text-xs text-gray-400 italic mt-2">
+            By {author}
+          </p>
         )}
+        <TranslateAI description = {description}/>
       </div>
     </div>
   );

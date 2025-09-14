@@ -2,6 +2,7 @@
 
 import {useState, useEffect} from "react";
 import ItemCard from "./itemCard";
+import TranslateAI from "./translate";
 
 interface NewsItem{
     author : string;
@@ -69,14 +70,16 @@ const News = () =>{
                 <div className="grid sm:grid-cols-3 grid-cols-1 gap-6">
                     {loading ? (<p>Fetching News</p>) : news && news.length > 0 ? (
                         news.slice(0,6).map((item, idx: number) => (
-                        <ItemCard
+                        <>
+                            <ItemCard
                             key={idx}
                             author={item.author}
                             title={item.title}
                             description={item.description}
                             image={item.urlToImage}
-                            publisher = {item.source.name}
-                        />
+                            publisher={item.source.name} />
+                            {/* <TranslateAI /> */}
+                        </>
                         ))
                     ) : <p>No news Found</p>}
                 </div>

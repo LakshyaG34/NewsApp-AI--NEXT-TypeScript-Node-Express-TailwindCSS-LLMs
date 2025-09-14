@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import cors from "cors";
 import { dbConnection } from "./db";
 import authRoutes from "./router/auth.router"
+import aiRoutes from "./router/ai.router"
 import cookieParser from "cookie-parser"
 // import news from "../news.json";
 // import path from "path"
@@ -20,6 +21,7 @@ app.use(cors({
 }));
 app.use(cookieParser());
 app.use("/api/auth", authRoutes);
+app.use("/api", aiRoutes);
 // app.use(express.static(path.join(__dirname, "../../Frontend/out")))
 
 app.get("/api/news", async(req : Request, res : Response) : Promise<void> =>{
@@ -33,17 +35,6 @@ app.get("/api/news", async(req : Request, res : Response) : Promise<void> =>{
         console.log(err);
     }
 })
-
-// app.get("/api/news", (req : Request, res : Response) : void=>{
-//     try{
-//         // res.json(news)
-//         res.status(200).json(news);
-//     }catch(err)
-//     {
-//         console.log(err);
-//         res.status(500).json({articles:[]});
-//     }
-// })
 
 // app.get("*", (req : Request, res : Response)=>{
 //     res.sendFile(path.join(__dirname, "../../Frontend/out/index.html"))
