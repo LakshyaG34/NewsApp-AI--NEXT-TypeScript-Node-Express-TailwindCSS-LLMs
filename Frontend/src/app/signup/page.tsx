@@ -1,6 +1,7 @@
 "use client"
 
 import {useState} from "react"
+import Link from "next/link"
 
 const SignUp = () =>{
     const [name, setName] = useState("");
@@ -46,6 +47,10 @@ const SignUp = () =>{
                     <input type = "text" value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)} placeholder="Confirm Your password" className="text-center"/>
                 </div>
                 <button type="submit" className="cursor-pointer focus:ring-1">Submit</button>
+                <div className="flex flex-row items-center gap-2">
+                    <span>Already have an Account :-</span>
+                    <Link href = "/signin" className="text-blue-400 hover:text-red-500">SignIn</Link>
+                </div>
             </form>
         </div>
     )

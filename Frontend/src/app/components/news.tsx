@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import ItemCard from "./itemCard";
+import LoadingBar from 'react-top-loading-bar'
 
 interface NewsItem {
   author: string;
@@ -19,11 +20,14 @@ const News = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [country, setCountry] = useState<string>("us");
   const [category, setCategory] = useState<string>("technology");
+  const [progress, setProgress] = useState(0);
+  
 
   useEffect(() => {
     const handleNews = async (): Promise<void> => {
       try {
         setLoading(true);
+        setProgress(30);
         const response = await fetch(
           `http://localhost:5000/api/news?country=${country}&category=${category}`
         );
@@ -31,12 +35,15 @@ const News = () => {
           throw new Error("Reponse is not OK");
         }
         const data = await response.json();
+        setProgress(50);
         console.log("articles", data.articles);
         setNews(data.articles);
+        setProgress(70);
       } catch (err) {
         console.log(err);
       } finally {
         setLoading(false);
+        setProgress(100);
       }
     };
     handleNews();
@@ -44,6 +51,10 @@ const News = () => {
 
   return (
     <div className="mx-auto max-w-7xl mt-4">
+      <LoadingBar
+        color='#f11946'
+        progress={progress}
+      />
       <div className="flex gap-4 mb-6">
         <select value={country} onChange={(e) => setCountry(e.target.value)}>
           <option value="us">US</option>

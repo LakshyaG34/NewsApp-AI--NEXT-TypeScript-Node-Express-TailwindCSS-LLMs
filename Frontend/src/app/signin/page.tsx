@@ -3,6 +3,7 @@
 import {useState} from "react"
 import { useAuthContext } from "@/context/authContext";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const SignIn = () =>{
     const [email, setEmail] = useState("");
@@ -43,7 +44,12 @@ const SignIn = () =>{
                     <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)} placeholder="Enter Password" className="text-center focus:outline-none focus:ring-1 focus:ring-pink-400 rounded-2xl transition duration-300 ease-in-out"/>
                 </div>
                 <button type="submit" className="cursor-pointer focus:ring-2 focus:ring-pink-500 focus:bg-pink-500 rounded-xl hover:bg-pink-300 px-2 py-2">Submit</button>
+                <div className="flex flex-row items-center gap-2">
+                    <span>Don't have an Account:-</span>
+                    <Link href = "/signup" className="text-blue-400 hover:text-red-500">SignUp</Link>
+                </div>
             </form>
+            
         </div>
     )
 }

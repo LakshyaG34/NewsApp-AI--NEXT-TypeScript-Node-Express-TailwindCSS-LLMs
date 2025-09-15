@@ -1,9 +1,10 @@
 "use client"
 
-import React from "react";
+import React,{useState} from "react";
 import Link from "next/link"
 import { useAuthContext } from "@/context/authContext";
 import { useRouter } from "next/navigation";
+
 
 
 const Navbar = () =>{
@@ -25,7 +26,7 @@ const Navbar = () =>{
 }
     return(
         <div className="flex flex-row justify-between bg-black/60 px-4 py-6">
-            <span className="text-xl font-bold animate-neonTextGlow">Nvb</span>
+            <span className="text-xl font-bold animate-neonTextGlow">NewsAPP</span>
             <div className="flex flex-row gap-2">
                 {!authUser ?
 
@@ -36,6 +37,7 @@ const Navbar = () =>{
                     )
                 }
             </div>
+            
         </div>
     )
 }
