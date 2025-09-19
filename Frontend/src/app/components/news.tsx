@@ -24,10 +24,21 @@ const News = () => {
   
 
   useEffect(() => {
+    let interval: NodeJS.Timeout;
     const handleNews = async (): Promise<void> => {
       try {
         setLoading(true);
-        setProgress(30);
+        setProgress(0);
+
+        interval = setInterval(() =>{
+          setProgress((prev) => {
+            if(prev >= 90)
+            {
+              return prev;
+            }
+            return prev+1;
+          });
+        }, 50);
         const response = await fetch(
           `http://localhost:5000/api/news?country=${country}&category=${category}`
         );
@@ -42,8 +53,9 @@ const News = () => {
       } catch (err) {
         console.log(err);
       } finally {
-        setLoading(false);
+        clearInterval(interval);
         setProgress(100);
+        setLoading(false);
       }
     };
     handleNews();
@@ -76,7 +88,7 @@ const News = () => {
             <img src="/loading.gif" alt="loading" />
           </div>
         ) : news && news.length > 0 ? (
-          news.slice(0, 6).map((item, idx: number) => (
+          news.slice(0, 9).map((item, idx: number) => (
             <>
               <ItemCard
                 key={idx}
