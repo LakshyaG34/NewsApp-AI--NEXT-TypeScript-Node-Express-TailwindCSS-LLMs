@@ -9,7 +9,7 @@ const SignUp = () =>{
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
-    const handleFetch = async(e : any) =>{
+    const handleFetch = async(e: React.FormEvent<HTMLFormElement>) =>{
         e.preventDefault();
         try{
             const response = await fetch("http://localhost:5000/api/auth/signup", {

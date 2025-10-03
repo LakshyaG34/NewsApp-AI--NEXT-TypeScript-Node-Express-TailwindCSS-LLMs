@@ -6,7 +6,7 @@ import authRoutes from "./router/auth.router"
 import aiRoutes from "./router/ai.router"
 import cookieParser from "cookie-parser"
 // import news from "../news.json";
-// import path from "path"
+import path from "path"
 
 dotenv.config();
 
@@ -22,7 +22,7 @@ app.use(cors({
 app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api", aiRoutes);
-// app.use(express.static(path.join(__dirname, "../../Frontend/out")))
+app.use(express.static(path.join(__dirname, "../../Frontend/out")))
 
 app.get("/api/news", async(req : Request, res : Response) : Promise<void> =>{
     try{
@@ -36,9 +36,9 @@ app.get("/api/news", async(req : Request, res : Response) : Promise<void> =>{
     }
 })
 
-// app.get("*", (req : Request, res : Response)=>{
-//     res.sendFile(path.join(__dirname, "../../Frontend/out/index.html"))
-// })
+app.get("*", (req : Request, res : Response)=>{
+    res.sendFile(path.join(__dirname, "../../Frontend/out/index.html"))
+})
 
 app.listen(PORT, ()=>{
     dbConnection();

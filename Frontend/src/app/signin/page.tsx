@@ -11,7 +11,7 @@ const SignIn = () =>{
     const {setAuthUser} = useAuthContext();
     const router = useRouter();
 
-    const handleFetch = async(e : any)=>{
+    const handleFetch = async(e: React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
         try{
             const response = await fetch("http://localhost:5000/api/auth/signin",{
@@ -45,11 +45,10 @@ const SignIn = () =>{
                 </div>
                 <button type="submit" className="cursor-pointer focus:ring-2 focus:ring-pink-500 focus:bg-pink-500 rounded-xl hover:bg-pink-300 px-2 py-2">Submit</button>
                 <div className="flex flex-row items-center gap-2">
-                    <span>Don't have an Account:-</span>
+                    <span>Don&apos;t have an Account:-</span>
                     <Link href = "/signup" className="text-blue-400 hover:text-red-500">SignUp</Link>
                 </div>
             </form>
-            
         </div>
     )
 }
